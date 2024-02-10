@@ -12,7 +12,7 @@ spec:
       port:
         number: 80
   rules:
-    - host: " abe8125bcb9784043b7dbbfc342304ba-429cc4ba30431574.elb.eu-central-1.amazonaws.com"
+    - host: "abe8125bcb9784043b7dbbfc342304ba-429cc4ba30431574.elb.eu-central-1.amazonaws.com"
       http:
         paths:
         - path: /home
