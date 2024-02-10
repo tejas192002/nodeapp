@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nodeapp
+  name: home-deployment
   labels:
-    app: my-app
+    app: home
 spec:
   template:
     metadata:
       labels:
-        app: my-app
+        app: home
     spec:
       containers:
-        - name: app-container
-          image:  tejaspatil19/chatapp-updated:latest
+        - name: home-c
+          image: tejaspatil19/home:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 80
           resources:
             requests:
               cpu: 200m
@@ -26,7 +26,7 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: my-app
+      app: home
   strategy:
     type: RollingUpdate
 ...
@@ -37,11 +37,11 @@ metadata:
   name: home-svc
 spec:
   ports:
-    - port: 3000
-      targetPort: 3000
+    - port: 80
+      targetPort: 80
       protocol: TCP
   selector:
-    app: nodeapp
+    app: home
 ...
 ---
 apiVersion: autoscaling/v2
@@ -52,7 +52,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: nodeapp
+    name: home-deployment
   minReplicas: 1
   maxReplicas: 10
   metrics:
@@ -61,5 +61,5 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 30
+        averageUtilization: 50
 ...
