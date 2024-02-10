@@ -47,7 +47,7 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: my-hpa
+  name: new-hpa
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

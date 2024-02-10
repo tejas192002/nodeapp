@@ -41,7 +41,7 @@ spec:
       targetPort: 3000
       protocol: TCP
   selector:
-    app: nodeapp
+    app: my-app
 ...
 ---
 apiVersion: autoscaling/v2
