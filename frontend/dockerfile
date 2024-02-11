@@ -2,7 +2,6 @@
 FROM centos:7
 RUN yum install httpd -y
 RUN mkdir -p /var/www/html/backend
-COPY index1.html /var/www/html/backend/index1.html
-COPY index.html /var/www/html/
+COPY index.html /var/www/html/backend/
 EXPOSE 80
 ENTRYPOINT ["httpd","-DFOREGROUND"]
