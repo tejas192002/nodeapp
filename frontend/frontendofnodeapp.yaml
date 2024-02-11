@@ -2,18 +2,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: home-deployment
+  name: frontend-deployment
   labels:
-    app: home
+    app: front
 spec:
   template:
     metadata:
       labels:
-        app: home
+        app: front
     spec:
       containers:
         - name: home-c
-          image: tejaspatil19/nodefrontend:latest
+          image: tejaspatil19/nodeapp-frontend:latest
           ports:
             - containerPort: 80
           resources:
@@ -26,7 +26,7 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: home
+      app: front
   strategy:
     type: RollingUpdate
 ...
@@ -34,14 +34,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: home-svc
+  name: frontendtej-svc
 spec:
   ports:
     - port: 80
       targetPort: 80
       protocol: TCP
   selector:
-    app: home
+    app: front
 ...
 ---
 apiVersion: autoscaling/v2
@@ -52,7 +52,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: home-deployment
+    name: frontend-deployment
   minReplicas: 1
   maxReplicas: 10
   metrics:

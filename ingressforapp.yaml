@@ -8,17 +8,17 @@ spec:
   ingressClassName: nginx
   defaultBackend:
     service:
-      name: home-svc
+      name: /home
       port:
         number: 80
   rules:
     - host: "abe8125bcb9784043b7dbbfc342304ba-429cc4ba30431574.elb.eu-central-1.amazonaws.com"
       http:
         paths:
-        - path: /home
+        - path: /backend
           pathType: Prefix
           backend:
             service:
-              name: home-svc
+              name: frontendtej-svc
               port:
                 number: 80
