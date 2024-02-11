@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nodeapp
+  name: nodeapp-backend
   labels:
     app: my-app
 spec:
@@ -34,12 +34,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: home-svc
+  name: backend-svc
 spec:
   ports:
-    - port: 3000
-      targetPort: 3000
+    - port: 80
+      targetPort: 8080
       protocol: TCP
+  type: NodePort
   selector:
     app: my-app
 ...
@@ -52,7 +53,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: nodeapp
+    name: nodeapp-backend
   minReplicas: 1
   maxReplicas: 10
   metrics:
