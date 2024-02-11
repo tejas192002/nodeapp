@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: home-c
-          image: tejaspatil19/home:latest
+          image: tejaspatil19/mobile:latest
           ports:
             - containerPort: 80
   replicas: 2
